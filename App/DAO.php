@@ -4,7 +4,7 @@
     
     use FW\DB\Connection;
 
-    abstract class DAO extends Connection{
+    abstract class DAO extends Connection {
         
         protected $conn;
         protected $sql;

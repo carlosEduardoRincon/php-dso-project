@@ -12,10 +12,10 @@
 
         public function __construct() {
                        
-            $this->dbname = "banco";
+            $this->dbname = "aula-dso";
             $this->host = "localhost";
-            $this->user = "usuario";
-            $this->pass = "senha";
+            $this->user = "root";
+            $this->pass = "";
             try{
                 $this->conn = new \PDO(
                     "mysql:dbname=".$this->dbname.";host=".$this->host.";charset=utf8", 

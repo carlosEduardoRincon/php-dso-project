@@ -5,7 +5,7 @@ namespace App\DAO;
 use App\DAO;
 use App\Model\IndexModel;
 
-class IndexDAO extends DAO{
+class IndexDAO extends DAO {
 
     public function inserir ($obj){
 
@@ -22,6 +22,4 @@ class IndexDAO extends DAO{
     public function listar(){
         
     }
-
-
 }

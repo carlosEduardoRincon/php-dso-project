@@ -12,6 +12,10 @@
             $this->render('formcadastro', 'dashboard');
         }
 
+        public function formListUnic() {
+            $this->render('formListUnic', 'dashboard');
+        }
+        
         public function inserir() {
             $cadastro = new CadastroModel();
             $cadastro->__set('nomeCad', $_POST['nome']);
@@ -30,9 +34,11 @@
         }
 
         public function listarPorId() {
+            $idCad = $_GET['idCad'];
+
             $cadastro = new CadastroModel();
-            $cadastro->__set('idCad', $_POST['idCad']);
-    
+            $cadastro->__set('idCad', $idCad);
+            
             $cadastroDAO = new CadastroDAO();
             $cadastro = $cadastroDAO->buscarPorId($cadastro);
 
@@ -41,27 +47,29 @@
         }
 
         public function atualizar() {
+            $idCad = $_GET['idCad'];
+            $nomeCad = $_GET['nomeCad'];
 
             $cadastro = new CadastroModel();
-            $cadastro->__set('idCad', $_POST['idCad']);
-            $cadastro->__set('nomeCad', $_POST['nomeCad']);
+            $cadastro->__set('idCad', $idCad);
+            $cadastro->__set('nomeCad', $nomeCad);
 
             $cadastroDAO = new CadastroDAO();
             $cadastro = $cadastroDAO->alterar($cadastro);
 
-            $this->getView()->cadastro = $cadastro;
-            $this->render('listar', 'dashboard');
+            header('Location: /listar');
         }
 
         public function excluir() {
+            $idCad = $_GET['idCad'];
+
             $cadastro = new CadastroModel();
-            $cadastro->__set('idCad', $_POST['idCad']);
+            $cadastro->__set('idCad', $idCad);
             
             $cadastroDAO = new CadastroDAO();
             $cadastro = $cadastroDAO->excluir($cadastro);
 
-            $this->getView()->cadastro = $cadastro;
-            $this->render('listar', 'dashboard');
+            header('Location: /listar');
         }
 
         public function validaAutenticacao() {}

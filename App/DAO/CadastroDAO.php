@@ -35,11 +35,29 @@ class CadastroDAO extends DAO {
     }
 
     public function buscarPorId ($obj){
-        $id = $obj->__get("idCad");
-        $sql = "SELECT * FROM cadastro WHERE idCad = :id";
-        $stmt = $this->getConn()->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
+        try {
+            $id = $obj->__get("idCad");
+            $cadastro = array();
+            
+            $sql = "SELECT * FROM cadastro WHERE idCad = :id";
+            $stmt = $this->getConn()->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            
+            foreach($result as $row) {
+                $cad = new CadastroModel();
+                $cad->__set('idCad', $row['idCad']);
+                $cad->__set('nomeCad', $row['nomeCad']);
+                array_push($cadastro, $cad);
+            }
+
+            return $cadastro;
+        } catch (\PDOException $ex) {
+            header('Location: /error103');
+            die();
+        }
     }
 
     public function listar(){

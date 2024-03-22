@@ -3,18 +3,18 @@
     
     use FW\Init\Boostrap;
     
-    class Route extends Boostrap{
+    class Route extends Boostrap {
      
         public function initRoutes(){
             
-            $routes['formcadastro'] = array(
-                'route' => '/form-cadastro',
+            $routes['cadastrar'] = array(
+                'route' => '/cadastrar',
                 'controller' => 'CadastroController',
                 'action' => 'formCadastro'
             );
 
-            $routes['cadastrar'] = array(
-                'route' => '/cadastrar',
+            $routes['form-cadastro'] = array(
+                'route' => '/form-cadastro',
                 'controller' => 'CadastroController',
                 'action' => 'inserir'
             );
